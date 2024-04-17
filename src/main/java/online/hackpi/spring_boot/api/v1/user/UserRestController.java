@@ -1,12 +1,9 @@
 package online.hackpi.spring_boot.api.v1.user;
 
 import lombok.RequiredArgsConstructor;
-import online.hackpi.spring_boot.api.v1.user.model.dto.UserDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,6 +12,7 @@ public class UserRestController {
     private final UserService userService;
     @GetMapping("/users")
     public ResponseEntity<?> getAllUsers(){
+        System.out.println("Users found.!!!");
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(userService.getAllUsers());

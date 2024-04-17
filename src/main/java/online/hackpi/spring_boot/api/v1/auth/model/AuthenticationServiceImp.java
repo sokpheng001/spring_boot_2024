@@ -9,7 +9,6 @@ import online.hackpi.spring_boot.api.v1.user.repository.UserRepository;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -32,7 +31,7 @@ public class AuthenticationServiceImp {
 //        System.out.println("User Data: " + user_);
         String token = jwtServiceImp.generateToken(user_);
         return AuthToken.builder()
-                .token(token)
+                .accessToken(token)
                 .build();
     }
 }
