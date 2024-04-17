@@ -9,8 +9,8 @@ import java.util.Set;
 @Builder
 public record UserDto(
          String uuid,
-         String userName,
-         String email,
+         String name,
+         String userEmail,
          Boolean isDeleted,
          Boolean isVerified,
          Set<RoleDto> roles

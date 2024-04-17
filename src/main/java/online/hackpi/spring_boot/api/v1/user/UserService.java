@@ -6,6 +6,6 @@ import online.hackpi.spring_boot.api.v1.user.model.dto.UserDto;
 import java.util.List;
 
 public interface UserService {
-    User insertNewUser(User user);
+    UserDto insertNewUser(User user);
     List<UserDto> getAllUsers();
 }
