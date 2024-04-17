@@ -2,6 +2,7 @@ package online.hackpi.spring_boot.api.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -16,7 +17,8 @@ public class SecurityConfiguration {
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
         httpSecurity
                 .authorizeHttpRequests(
-                authorize->authorize.requestMatchers("/api/v1/**").permitAll())
+                authorize->authorize.requestMatchers("/api/v1/user/login").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/api/v1/users").permitAll())
                 .httpBasic(Customizer.withDefaults());
         return httpSecurity.build();
     }
