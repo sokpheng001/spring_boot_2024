@@ -1,7 +1,6 @@
 package online.hackpi.spring_boot.api.v1.auth;
 
 import lombok.RequiredArgsConstructor;
-import online.hackpi.spring_boot.api.security.UserDetailsImp;
 import online.hackpi.spring_boot.api.v1.auth.model.AuthenticationServiceImp;
 import online.hackpi.spring_boot.api.v1.auth.model.dto.LoginDto;
 import online.hackpi.spring_boot.api.v1.user.UserService;

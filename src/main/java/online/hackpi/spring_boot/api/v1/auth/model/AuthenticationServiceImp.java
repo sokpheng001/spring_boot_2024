@@ -1,7 +1,7 @@
 package online.hackpi.spring_boot.api.v1.auth.model;
 
 import lombok.RequiredArgsConstructor;
-import online.hackpi.spring_boot.api.security.jwtConfig.JwtServiceImp;
+import online.hackpi.spring_boot.security.jwtConfig.JwtServiceImp;
 import online.hackpi.spring_boot.api.v1.auth.authBase.AuthToken;
 import online.hackpi.spring_boot.api.v1.auth.model.dto.LoginDto;
 import online.hackpi.spring_boot.api.v1.user.model.User;
@@ -10,8 +10,6 @@ import online.hackpi.spring_boot.api.v1.user.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

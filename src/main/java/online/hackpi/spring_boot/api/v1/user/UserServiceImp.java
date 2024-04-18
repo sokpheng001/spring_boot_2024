@@ -1,19 +1,15 @@
 package online.hackpi.spring_boot.api.v1.user;
 
 import lombok.RequiredArgsConstructor;
-import online.hackpi.spring_boot.api.security.jwtConfig.JwtServiceImp;
-import online.hackpi.spring_boot.api.v1.role.model.Role;
 import online.hackpi.spring_boot.api.v1.role.repository.RoleRepository;
 import online.hackpi.spring_boot.api.v1.user.mapstruct.UserMapstruct;
 import online.hackpi.spring_boot.api.v1.user.model.User;
 import online.hackpi.spring_boot.api.v1.user.model.dto.UserDto;
 import online.hackpi.spring_boot.api.v1.user.repository.UserRepository;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,7 +20,6 @@ public class UserServiceImp implements UserService{
     private final RoleRepository roleRepository;
     private final UserMapstruct userMapstruct;
     private final PasswordEncoder passwordEncoder;
-    private final JwtServiceImp jwtServiceImp;
 
 
     @Override
@@ -46,5 +41,10 @@ public class UserServiceImp implements UserService{
 //                find user if the isVerified equals true & isDeleted equals false
                  userRepository.findUsersByIsVerifiedAndIsDeleted(true,false)
         );
+    }
+
+    @Override
+    public UserDto getUserByUuid(String uuid) {
+        return userMapstruct.mapFromUserToUserDto(userRepository.findUserByUuid(uuid).orElseThrow());
     }
 }

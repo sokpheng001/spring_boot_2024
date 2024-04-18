@@ -1,4 +1,4 @@
-package online.hackpi.spring_boot.api.security.jwtConfig.filter;
+package online.hackpi.spring_boot.security.jwtConfig.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -6,8 +6,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import online.hackpi.spring_boot.api.security.UserDetailsImp;
-import online.hackpi.spring_boot.api.security.jwtConfig.JwtServiceImp;
+import online.hackpi.spring_boot.security.jwtConfig.JwtServiceImp;
+import online.hackpi.spring_boot.security.UserDetailsImp;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

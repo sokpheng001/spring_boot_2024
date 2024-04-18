@@ -1,4 +1,4 @@
-package online.hackpi.spring_boot.api.security;
+package online.hackpi.spring_boot.security;
 
 import lombok.RequiredArgsConstructor;
 import online.hackpi.spring_boot.api.v1.user.repository.UserRepository;

@@ -1,4 +1,4 @@
-package online.hackpi.spring_boot.api.security.jwtConfig;
+package online.hackpi.spring_boot.security.jwtConfig;
 
 
 import io.jsonwebtoken.Claims;
@@ -46,14 +46,13 @@ public class JwtServiceImp {
                 .getPayload();
     }
     public String generateToken(User user){
-        String token  = Jwts
+        return Jwts
                 .builder()
                 .subject(user.getUserEmail())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis()+24*60*60*1000))
                 .signWith(getKeyForSign())
                 .compact();
-        return token;
 //        return
     }
     private SecretKey getKeyForSign(){
