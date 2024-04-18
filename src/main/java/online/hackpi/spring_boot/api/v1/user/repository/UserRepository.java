@@ -11,5 +11,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     List<User> findUsersByIsVerifiedAndIsDeleted(Boolean isVerified, Boolean isDeleted);
     Optional<User> findUserByName(String name);
     Optional<User> findUserByUserEmail(String email);
-    Optional<User> findUserByUuid(String uuid);
+    Optional<User> findUserByUuidAndIsDeletedAndIsVerified(String uuid, boolean idDeleted, boolean isVerified);
 }

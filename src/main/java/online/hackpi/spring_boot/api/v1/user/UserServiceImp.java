@@ -45,6 +45,6 @@ public class UserServiceImp implements UserService{
 
     @Override
     public UserDto getUserByUuid(String uuid) {
-        return userMapstruct.mapFromUserToUserDto(userRepository.findUserByUuid(uuid).orElseThrow());
+        return userMapstruct.mapFromUserToUserDto(userRepository.findUserByUuidAndIsDeletedAndIsVerified(uuid,false, true).orElseThrow());
     }
 }

@@ -40,8 +40,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(
                 authorize->authorize.requestMatchers("api/v1/auth/***")
                         .permitAll()
-                        .requestMatchers(HttpMethod.GET,"api/v1/users")
-                        .authenticated()
+                        .anyRequest()
+                        .permitAll()
                 ).userDetailsService(userDetailsService()) // or we can use userDetailsImp
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
