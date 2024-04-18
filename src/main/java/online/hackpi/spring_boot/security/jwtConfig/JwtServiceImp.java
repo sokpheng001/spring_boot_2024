@@ -2,34 +2,34 @@ package online.hackpi.spring_boot.security.jwtConfig;
 
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import online.hackpi.spring_boot.api.v1.user.model.User;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 import java.util.function.Function;
 
 @Service
 public class JwtServiceImp {
-    private final String secretKey = "2731a660061e5a77b1a4931282d6390fedd0a85cec135ad59e1e8f374fa3f726";
+    @Value(value = "${Application.jwt.secret-key}")
+    private String secretKey;
     public Date extractExpiration(String token){
         return extractClaims(token, Claims::getExpiration);
     }
     public boolean isTokenExpired(String token){
-        return extractExpiration(token).before(new Date());
+        return extractExpiration(token).after(new Date());
     }
     public boolean isValid(String token, UserDetails userDetails){
         String userEmail = extractUserEmail(token);
         return userEmail.equals(userDetails.getUsername()) && isTokenExpired(token);
     }
-    public String extractUserEmail(String token){
+    public String extractUserEmail(String token) throws ExpiredJwtException {
      return extractClaims(token, Claims::getSubject);
     }
     public <T> T extractClaims(String token, Function<Claims , T> resolver){
@@ -50,7 +50,7 @@ public class JwtServiceImp {
                 .builder()
                 .subject(user.getUserEmail())
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis()+24*60*60*1000))
+                .expiration(new Date(System.currentTimeMillis()+ 60*1000)) // expired in 1 minute
                 .signWith(getKeyForSign())
                 .compact();
 //        return

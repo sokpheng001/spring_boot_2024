@@ -24,7 +24,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import java.security.Permission;
 
 @Configuration
 @EnableWebSecurity
@@ -40,8 +39,12 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(
                 authorize->authorize.requestMatchers("api/v1/auth/***")
                         .permitAll()
+                        .requestMatchers(HttpMethod.GET,"api/v1/users")
+                        .permitAll()
                         .anyRequest()
                         .permitAll()
+//                        .hasRole("ADMIN")
+//                        .hasAuthority("ROLE_ADMIN")
                 ).userDetailsService(userDetailsService()) // or we can use userDetailsImp
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

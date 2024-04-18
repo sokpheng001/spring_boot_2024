@@ -1,4 +1,4 @@
-package online.hackpi.spring_boot.api.v1.user;
+package online.hackpi.spring_boot.api.v1.user.service;
 
 import online.hackpi.spring_boot.api.v1.user.model.User;
 import online.hackpi.spring_boot.api.v1.user.model.dto.UserDto;
@@ -10,4 +10,5 @@ public interface UserService {
     UserDto insertNewUser(User user);
     List<UserDto> getAllUsers();
     UserDto getUserByUuid(String uuid);
+    UserDto verifyUser(Boolean verifiedStatus, String email);
 }

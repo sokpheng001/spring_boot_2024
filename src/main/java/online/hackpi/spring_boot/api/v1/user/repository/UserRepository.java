@@ -1,7 +1,6 @@
 package online.hackpi.spring_boot.api.v1.user.repository;
 
 import online.hackpi.spring_boot.api.v1.user.model.User;
-import online.hackpi.spring_boot.api.v1.user.model.dto.UserDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

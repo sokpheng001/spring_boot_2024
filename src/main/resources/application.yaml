@@ -9,3 +9,8 @@ spring:
       ddl-auto: update
     show-sql: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect # (optional) specify the Hibernate dialect for PostgreSQL
+
+Application:
+  jwt:
+    secret-key: 2731a660061e5a77b1a4931282d6390fedd0a85cec135ad59e1e8f374fa3f726
+    expired-date: 900

@@ -8,7 +8,10 @@ import online.hackpi.spring_boot.api.v1.user.model.User;
 import online.hackpi.spring_boot.api.v1.user.repository.UserRepository;
 
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,10 +19,10 @@ import org.springframework.stereotype.Service;
 public class AuthenticationServiceImp {
     private final JwtServiceImp jwtServiceImp;
     private final UserRepository userRepository;
-    private final AuthenticationManager authenticationManager;
+    private final AuthenticationProvider authenticate;
     public AuthToken login(LoginDto userData){
 //        System.out.println("From Authentication Service Implement: " + userData);
-        authenticationManager.authenticate(
+        authenticate.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         userData.userEmail(),
                         userData.password()

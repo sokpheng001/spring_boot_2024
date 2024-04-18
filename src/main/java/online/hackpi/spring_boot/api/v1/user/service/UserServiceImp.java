@@ -1,4 +1,4 @@
-package online.hackpi.spring_boot.api.v1.user;
+package online.hackpi.spring_boot.api.v1.user.service;
 
 import lombok.RequiredArgsConstructor;
 import online.hackpi.spring_boot.api.v1.role.repository.RoleRepository;
@@ -26,7 +26,7 @@ public class UserServiceImp implements UserService{
     public UserDto insertNewUser(User user){
         user.setUserPassword(passwordEncoder.encode(user.getUserPassword()));
         if(user.getRoles().isEmpty()){
-            user.getRoles().add(roleRepository.findRoleByRoleName("ROLE_USER"));
+            user.getRoles().add(roleRepository.findRoleByRoleName("USER"));
         }
         user.setUuid(UUID.randomUUID().toString());
         user.setIsDeleted(false);
@@ -46,5 +46,13 @@ public class UserServiceImp implements UserService{
     @Override
     public UserDto getUserByUuid(String uuid) {
         return userMapstruct.mapFromUserToUserDto(userRepository.findUserByUuidAndIsDeletedAndIsVerified(uuid,false, true).orElseThrow());
+    }
+
+    @Override
+    public UserDto verifyUser(Boolean verifiedStatus, String email) {
+        User user = userRepository.findUserByUserEmail(email).orElseThrow();
+        user.setIsVerified(verifiedStatus);
+        userRepository.save(user);
+        return userMapstruct.mapFromUserToUserDto(user);
     }
 }
