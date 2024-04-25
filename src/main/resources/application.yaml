@@ -4,6 +4,7 @@ spring:
     username: postgres
     password: 123
     driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -14,3 +15,6 @@ Application:
   jwt:
     secret-key: 2731a660061e5a77b1a4931282d6390fedd0a85cec135ad59e1e8f374fa3f726
     expired-date: 900
+
+Typesense:
+  api-key: cea658ba2d55cf155ab2b920cc14d6d00edd0bf2da21a3aa2163c3d7b57ef592
